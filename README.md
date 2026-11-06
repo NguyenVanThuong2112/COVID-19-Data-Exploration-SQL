@@ -47,7 +47,7 @@ To maintain a clean and professional workflow, the project is structured as foll
 * Utilized complex SQL queries including `JOINs`, `CTEs`, `Temp Tables`, `Windows Functions` (Partition By), and `Aggregate Functions`.
 * Explored core metrics such as Total Cases vs. Total Deaths (Mortality Rate) and Total Cases vs. Population (Infection Rate).
 
-### Phase 2: Data Cleaning & Transformation (Python/Pandas)
+### Phase 2: Data Cleaning (Python/Pandas)
 
 * **Data Quality Assurance:** Handled Null/NaN values, standardized `datetime` formats, and enforced strict numeric data types to prevent calculation errors.
 * **Missing Value Imputation:** Logically filled unrecorded daily cases and deaths with `0`.
