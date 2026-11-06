@@ -1,33 +1,89 @@
-# COVID-19 Data Exploration in SQL
+# 🦠 COVID-19 Data Analysis Pipeline: SQL ➔ Python ➔ Power BI
+
+[![SQL](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)](https://github.com/NguyenVanThuong2112/COVID-19-Data-Exploration-SQL)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/NguyenVanThuong2112/COVID-19-Data-Exploration-SQL)
+[![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://github.com/NguyenVanThuong2112/COVID-19-Data-Exploration-SQL)
 
 ## 📌 Project Overview
-This project explores global COVID-19 data to uncover trends in infection rates, mortality rates, and vaccination progress across different countries and continents. 
+This project is a comprehensive **Full-Stack Data Analysis Portfolio** focusing on the global impacts of the COVID-19 pandemic. 
 
-## 🛠️ Skills & Technologies Used
-* **Database:** Microsoft SQL Server (SSMS) / MySQL
-* **SQL Concepts:** Joins, CTEs, Windows Functions, Aggregate Functions, Data Type Conversions, Creating Views.
-* **Dataset:** Our World in Data (Covid-19 dataset)
+Initially started as an SQL data exploration project, it has evolved into a complete end-to-end data pipeline. The project demonstrates the ability to extract initial insights using **SQL Server**, programmatically clean and transform raw datasets using **Python (Pandas)**, and design an interactive, dynamic dashboard using **Power BI**.
 
-## 🔍 Key Questions Answered
-1. **Global Impact:** What is the overall death percentage of reported COVID-19 cases globally?
-2. **Infection Rates:** Which countries have the highest infection rates relative to their total population?
-3. **Mortality Rates:** Which countries and continents suffered the highest total death counts?
-4. **Vaccination Progress:** How can we track the rolling number of vaccinations and calculate the percentage of vaccinated individuals per country over time?
+## 🛠️ Tech Stack & Tools
+*   **Database Management:** Microsoft SQL Server (SSMS)
+*   **Data Manipulation & Cleaning:** Python (Pandas, NumPy, Pathlib), Jupyter Notebook
+*   **Data Visualization:** Power BI Desktop
+*   **Version Control:** Git & GitHub
 
-## 💻 Sample Code (Using CTE & Window Functions)
-To calculate the rolling count of vaccinated people, I utilized `JOIN` to combine infection and vaccination tables, applying `OVER (PARTITION BY...)` to calculate cumulative sums:
+## 📂 Repository Structure
+To maintain a clean and professional workflow, the project is structured as follows:
 
-```sql
-WITH PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
-AS
-(
-SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
-, SUM(CAST(vac.new_vaccinations AS INT)) OVER (PARTITION BY dea.Location ORDER BY dea.location, dea.Date) AS RollingPeopleVaccinated
-FROM PortfolioProject..CovidDeaths dea
-JOIN PortfolioProject..CovidVaccinations vac
-	ON dea.location = vac.location
-	AND dea.date = vac.date
-WHERE dea.continent IS NOT NULL 
-)
-SELECT *, (RollingPeopleVaccinated/Population)*100 AS PercentVaccinated
-FROM PopvsVac;	
+```text
+📦 COVID-19-Data-Exploration-SQL
+ ┣ 📂 00_Data                 
+ ┃ ┣ 📂 raw_data              # Original Excel files downloaded from the source
+ ┃ ┗ 📂 clean_data            # Cleaned CSV files exported via Python for Power BI
+ ┃
+ ┣ 📂 01_SQL_Exploration      
+ ┃ ┗ 📜 Covid_Data_Exploration.sql  # SQL queries for initial data discovery and calculations
+ ┃
+ ┣ 📂 02_Python_Processing    
+ ┃ ┣ 📜 01_Data_Cleaning.ipynb      # Handles missing values, duplicates, and data types
+ ┃ ┗ 📜 02_Data_Transformation.ipynb # Aggregates and splits data into 4 optimized tables
+ ┃
+ ┣ 📂 03_PowerBI_Dashboard    
+ ┃ ┣ 📜 Covid_Dashboard.pbix        # The final interactive Power BI file
+ ┃ ┗ 📜 Dashboard_Screenshot.png    # Preview image of the dashboard
+ ┃
+ ┗ 📜 README.md
+
+```
+
+## 🔄 Data Pipeline Workflow
+
+### Phase 1: Data Exploration (SQL Server)
+
+* Imported raw datasets (`CovidDeaths` and `CovidVaccinations`) into SQL Server.
+* Utilized complex SQL queries including `JOINs`, `CTEs`, `Temp Tables`, `Windows Functions` (Partition By), and `Aggregate Functions`.
+* Explored core metrics such as Total Cases vs. Total Deaths (Mortality Rate) and Total Cases vs. Population (Infection Rate).
+
+### Phase 2: Data Cleaning & Transformation (Python/Pandas)
+
+* **Data Quality Assurance:** Handled Null/NaN values, standardized `datetime` formats, and enforced strict numeric data types to prevent calculation errors.
+* **Missing Value Imputation:** Logically filled unrecorded daily cases and deaths with `0`.
+* **Dimensional Modeling:** Transformed the cleaned master dataset into 4 specific fact/dimension CSV tables tailored for optimal Power BI performance:
+1. `1_GlobalNumbers.csv` (For high-level KPI Cards)
+2. `2_TotalDeathsPerContinent.csv` (For Bar/Donut Charts)
+3. `3_PercentPopulationInfected.csv` (For Geospatial Mapping)
+4. `4_PercentPopulationInfected_TimeSeries.csv` (For Trend Line Charts)
+
+
+
+### Phase 3: Data Visualization (Power BI)
+
+* Connected Power BI directly to the cleaned CSV files generated by Python.
+* Designed an interactive dashboard to track the spread of the virus, identify geographical hotspots, and monitor mortality trends globally.
+
+## 📊 Dashboard Preview
+
+*(Note: The dashboard is currently in development. The screenshot below will be updated once the Power BI visualization phase is complete.)*
+
+## 💡 Key Findings (Preview)
+
+* **Infection Rates:** Identified the top countries with the highest percentage of their population infected by the virus.
+* **Mortality Trends:** Tracked the global death percentage over time, highlighting the peaks during major waves.
+* **Vaccination Progress:** Mapped the rolling count of vaccinated individuals against the total population to measure immunization progress.
+
+## 🔗 Data Source
+
+* **Source:** [Our World in Data - COVID-19 Dataset](https://ourworldindata.org/covid-deaths)
+* **Format:** Excel / CSV
+* **Timespan:** Jan 2020 - 2021 (Based on Alex The Analyst's Portfolio Project timeframe).
+
+```
+
+### 💡 Lưu ý nhỏ cho bạn:
+1. Ở phần **`Dashboard Preview`**, tôi đã để sẵn một khung ảnh giữ chỗ (Placeholder) có chữ *"Power BI Dashboard Coming Soon"*. Sau khi bạn làm xong Power BI và chụp ảnh màn hình lưu vào thư mục `03_PowerBI_Dashboard`, hãy tải bức ảnh đó lên GitHub và thay thế cái link trong ngoặc `()` bằng link ảnh thực tế của bạn nhé.
+2. Các huy hiệu (Badges) ở ngay dưới tiêu đề sẽ tự động hiển thị các logo màu sắc rất đẹp mắt của SQL Server, Python và Power BI khi bạn dán vào giao diện của GitHub.
+
+```
