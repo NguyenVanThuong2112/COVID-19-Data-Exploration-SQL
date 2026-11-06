@@ -1,0 +1,13 @@
+# ==========================================
+# COVID-19 Data Analysis Pipeline
+# Environment Requirements for Python Scripts
+# ==========================================
+
+# Core library for data manipulation, cleaning, and aggregation
+pandas==2.2.2
+
+# Required engine by Pandas to read and write Excel (.xlsx) files
+openpyxl==3.1.5
+
+# Core numerical computing library (often used implicitly by Pandas)
+numpy==1.26.4
