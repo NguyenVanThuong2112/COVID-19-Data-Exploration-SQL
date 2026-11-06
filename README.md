@@ -29,7 +29,7 @@ To maintain a clean and professional workflow, the project is structured as foll
  ┃
  ┣ 📂 02_Python_Processing    
  ┃ ┣ 📜 01_Data_Cleaning.ipynb      # Handles missing values, duplicates, and data types
- ┃ ┗ 📜 02_Data_Transformation.ipynb # Aggregates and splits data into 4 optimized tables
+ ┃ 
  ┃
  ┣ 📂 03_PowerBI_Dashboard    
  ┃ ┣ 📜 Covid_Dashboard.pbix        # The final interactive Power BI file
@@ -51,11 +51,6 @@ To maintain a clean and professional workflow, the project is structured as foll
 
 * **Data Quality Assurance:** Handled Null/NaN values, standardized `datetime` formats, and enforced strict numeric data types to prevent calculation errors.
 * **Missing Value Imputation:** Logically filled unrecorded daily cases and deaths with `0`.
-* **Dimensional Modeling:** Transformed the cleaned master dataset into 4 specific fact/dimension CSV tables tailored for optimal Power BI performance:
-1. `1_GlobalNumbers.csv` (For high-level KPI Cards)
-2. `2_TotalDeathsPerContinent.csv` (For Bar/Donut Charts)
-3. `3_PercentPopulationInfected.csv` (For Geospatial Mapping)
-4. `4_PercentPopulationInfected_TimeSeries.csv` (For Trend Line Charts)
 
 
 
