@@ -1,0 +1,28 @@
+{
+  "name": "Covid Dark",
+  "dataColors": ["#2F80ED", "#E5484D", "#2FB67C", "#F5A524", "#9B8AFB", "#64748B"],
+  "background": "#12283D",
+  "foreground": "#E6EDF5",
+  "tableAccent": "#2F80ED",
+  "good": "#2FB67C",
+  "bad": "#E5484D",
+  "neutral": "#F5A524",
+  "textClasses": {
+    "callout": { "fontSize": 30, "fontFace": "Segoe UI Semibold", "color": "#E6EDF5" },
+    "title":   { "fontSize": 12, "fontFace": "Segoe UI Semibold", "color": "#E6EDF5" },
+    "label":   { "fontSize": 10, "fontFace": "Segoe UI", "color": "#9FB3C8" }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#0B1B2B" } }, "transparency": 0 }]
+      }
+    },
+    "*": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#12283D" } }, "transparency": 0 }],
+        "border": [{ "show": false }]
+      }
+    }
+  }
+}
