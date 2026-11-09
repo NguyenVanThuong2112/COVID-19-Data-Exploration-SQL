@@ -61,7 +61,10 @@ To maintain a clean and professional workflow, the project is structured as foll
 
 ## 📊 Dashboard Preview
 
-*(Note: The dashboard is currently in development. The screenshot below will be updated once the Power BI visualization phase is complete.)*
+<img width="647" height="359" alt="image" src="https://github.com/user-attachments/assets/24891ccb-eb59-4b89-a732-b421102ea56b" />
+<img width="614" height="368" alt="image" src="https://github.com/user-attachments/assets/656634e5-2abc-42f2-8428-3bbfd15e2eb1" />
+<img width="652" height="365" alt="image" src="https://github.com/user-attachments/assets/b5581a5d-a130-48ec-a837-80cba92a3e05" />
+
 
 ## 💡 Key Findings (Preview)
 
