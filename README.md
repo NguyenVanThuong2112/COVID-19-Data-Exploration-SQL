@@ -77,11 +77,3 @@ To maintain a clean and professional workflow, the project is structured as foll
 * **Source:** [Our World in Data - COVID-19 Dataset](https://ourworldindata.org/covid-deaths)
 * **Format:** Excel / CSV
 * **Timespan:** Jan 2020 - 2021 (Based on Alex The Analyst's Portfolio Project timeframe).
-
-```
-
-### 💡 Lưu ý nhỏ cho bạn:
-1. Ở phần **`Dashboard Preview`**, tôi đã để sẵn một khung ảnh giữ chỗ (Placeholder) có chữ *"Power BI Dashboard Coming Soon"*. Sau khi bạn làm xong Power BI và chụp ảnh màn hình lưu vào thư mục `03_PowerBI_Dashboard`, hãy tải bức ảnh đó lên GitHub và thay thế cái link trong ngoặc `()` bằng link ảnh thực tế của bạn nhé.
-2. Các huy hiệu (Badges) ở ngay dưới tiêu đề sẽ tự động hiển thị các logo màu sắc rất đẹp mắt của SQL Server, Python và Power BI khi bạn dán vào giao diện của GitHub.
-
-```
