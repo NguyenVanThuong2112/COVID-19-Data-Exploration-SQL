@@ -101,7 +101,7 @@ COVID-19-Data-Exploration-SQL/
 ├── SQL_Exploration/
 │   └── Covid_Data_Exploration.sql    # SQL queries for exploration and calculations
 ├── Python_Processing/
-│   └── 01_Data_Cleaning.ipynb        # Missing values, duplicates, data types
+│   └──Data_Cleaning.ipynb        # Missing values, duplicates, data types
 ├── PowerBI_Dashboard/
 │   ├── Covid_Dashboard.pbix          # Interactive dashboard
 │   └── screenshots/                  # Preview image of each dashboard page
