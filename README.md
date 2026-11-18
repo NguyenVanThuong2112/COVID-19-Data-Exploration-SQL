@@ -4,19 +4,58 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](#)
 [![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](#)
 
-An end-to-end data analysis project on the global impact of COVID-19: explore the data with **SQL Server**, clean it with **Python (Pandas)**, and present the results in an interactive **Power BI** dashboard.
+An end-to-end analysis of the global COVID-19 pandemic (1 Jan 2020 – 30 Apr 2021): explore the data with **SQL Server**, clean it with **Python (Pandas)**, and present the results in a **4-page interactive Power BI dashboard**.
 
----
+> **Note:** The SQL exploration follows the *COVID-19 Data Exploration* portfolio project by [Alex The Analyst](https://www.youtube.com/@AlexTheAnalyst). The Python cleaning pipeline and the Power BI dashboard are my own extensions on top of it.
 
-## 📌 Overview
+## 📊 Dashboard Preview
 
-The project started as a SQL exploration exercise and grew into a full pipeline. It answers questions such as:
+The dashboard has four pages. All pages can be filtered by date range, country and continent.
 
-- How deadly was COVID-19 in each country (deaths vs. confirmed cases)?
-- Which countries had the highest share of their population infected?
-- How did vaccination progress over time relative to population size?
+### 1. Global Analysis
+Headline KPIs, cumulative cases and deaths, a world map, and the top 10 countries.
 
-> **Note:** The SQL part follows the *COVID-19 Data Exploration* portfolio project by [Alex The Analyst](https://www.youtube.com/@AlexTheAnalyst). The Python cleaning step and the Power BI dashboard are my own extensions on top of it.
+![Global Analysis](PowerBI_Dashboard/screenshots/01_global_analysis.png)
+
+### 2. Trend Analysis
+Peak days, daily new cases and deaths with a 7-day average, and monthly cases vs. deaths.
+
+![Trend Analysis](PowerBI_Dashboard/screenshots/02_trend_analysis.png)
+
+### 3. Country Comparison
+Absolute vs. population-adjusted rankings, population density vs. cases per million, and a comparison table.
+
+![Country Comparison](PowerBI_Dashboard/screenshots/03_country_comparison.png)
+
+### 4. Testing & Vaccination
+Vaccine doses, people vaccinated, tests per 1,000 people, positive rates, and vaccination coverage vs. deaths per million.
+
+![Testing & Vaccination](PowerBI_Dashboard/screenshots/04_testing_vaccination.png)
+
+## 💡 Key Findings
+
+All figures cover 1 Jan 2020 – 30 Apr 2021 (the end of the dataset).
+
+**Overall**
+- **151.40M** confirmed cases and **3.18M** deaths worldwide, a crude case fatality rate (CFR) of **2.10%**.
+- **1 billion** vaccine doses administered; **595M** people had at least one dose and **268M** were fully vaccinated.
+
+**Absolute numbers vs. population-adjusted numbers**
+- By total cases: United States (32M), India (19M), Brazil (15M), France (6M). By total deaths: United States (0.58M), Brazil (0.40M), Mexico (0.22M), India (0.21M).
+- Adjusting for population changes the picture. Among countries with at least 1M people, the highest cases per million were in **Czechia (~152,300), Slovenia (~115,600) and Bahrain (~104,000)**. India has the second-highest number of cases but only about 13,900 cases per million, compared with about 97,700 in the United States.
+- Highest deaths per million: **Hungary (~2,850), Czechia (~2,730), Bosnia and Herzegovina (~2,610)**.
+- **Mexico** has the highest CFR (**9.25%**) among countries with at least 10,000 cases. CFR uses confirmed cases only, so it depends on how much testing a country does.
+
+**Trends over time**
+- Monthly new cases rose from about 0.79M (Mar 2020) to 12.1M (Oct 2020), 19.3M (Dec 2020) and 22.5M (Apr 2021).
+- Daily deaths peaked at **17.91K on 20 Jan 2021**, and monthly deaths peaked in January 2021 (about 411,000).
+- The peak of daily cases (**905.99K on 28 Apr 2021**) sits at the very end of the dataset, so it may not be the true peak.
+- Deaths per new case fell from about 8.0% (Apr 2020) to about 1.5% (Oct 2020), rose to about 2.7% in Feb 2021 and was about 1.6% in Apr 2021. This describes the numbers only; the data cannot explain why.
+
+**Vaccination and context**
+- Highest share of the population with at least one dose (countries with ≥1M people): Israel (62.44%), United Arab Emirates (51.38%), United Kingdom (50.40%), United States (43.77%).
+- Population density shows almost no relationship with cases per million (rank correlation of about 0.1), while median age (about 0.65) and HDI (about 0.71) are more strongly associated. These are descriptive associations, not proof of cause.
+- A positive link between vaccination coverage and deaths per million does **not** mean vaccines increase deaths: outbreaks and vaccine rollouts happened at different times in each country, and the data ends in April 2021.
 
 ## 🛠️ Tech Stack
 
@@ -27,10 +66,32 @@ The project started as a SQL exploration exercise and grew into a full pipeline.
 | Visualization | Power BI Desktop |
 | Version control | Git & GitHub |
 
+## 🔄 Pipeline
+
+### 1. Exploration with SQL Server
+- Imported two tables: `CovidDeaths` and `CovidVaccinations`.
+- SQL techniques: `JOIN`, `CTE`, temp tables, window functions (`PARTITION BY`) and aggregate functions.
+- Core metrics:
+  - **Death rate:** total deaths ÷ total cases
+  - **Infection rate:** total cases ÷ population
+  - **Vaccination progress:** rolling count of people vaccinated vs. population
+
+### 2. Cleaning with Python (Pandas)
+- Standardized date columns to `datetime`.
+- Enforced numeric types on count columns to avoid calculation errors.
+- Handled null/NaN values: filled unrecorded daily cases and deaths with `0`.
+- Checked for and removed duplicate rows.
+- Exported cleaned CSV files to `Data/clean_data/`.
+
+### 3. Visualization with Power BI
+- Connected Power BI to the cleaned CSV files.
+- Built four dashboard pages (Global Analysis, Trend Analysis, Country Comparison, Testing & Vaccination) with slicers for date, country and continent.
+- Added short "key insights" notes on the pages, written to describe the data without claiming causes.
+
 ## 📂 Repository Structure
 
 ```
-COVID-19-Data-Exploration-SQL
+COVID-19-Data-Exploration-SQL/
 ├── Data/
 │   ├── raw_data/              # Original Excel files from Our World in Data
 │   └── clean_data/            # Cleaned CSV files exported by Python, used by Power BI
@@ -40,47 +101,10 @@ COVID-19-Data-Exploration-SQL
 │   └── 01_Data_Cleaning.ipynb        # Missing values, duplicates, data types
 ├── PowerBI_Dashboard/
 │   ├── Covid_Dashboard.pbix          # Interactive dashboard
-│   └── Dashboard_Screenshot.png      # Preview image
+│   └── screenshots/                  # Preview image of each dashboard page
 ├── requirements.txt
 └── README.md
 ```
-
-## 🔄 Pipeline
-
-### 1. Exploration with SQL Server
-- Imported two tables: `CovidDeaths` and `CovidVaccinations`.
-- SQL techniques used: `JOIN`, `CTE`, temp tables, window functions (`PARTITION BY`), aggregate functions, and views.
-- Core metrics calculated:
-  - **Death rate:** total deaths ÷ total cases
-  - **Infection rate:** total cases ÷ population
-  - **Vaccination progress:** rolling count of people vaccinated vs. population
-
-### 2. Cleaning with Python (Pandas)
-- Standardized date columns to `datetime`.
-- Enforced numeric types on count columns to avoid calculation errors.
-- Handled null/NaN values: filled unrecorded daily cases and deaths with `0`.
-- Removed duplicate rows.
-- Exported cleaned CSV files to `Data/clean_data/`.
-
-### 3. Visualization with Power BI
-- Connected Power BI to the cleaned CSV files.
-- Built an interactive dashboard to track the spread of the virus, find geographic hotspots, and follow mortality trends.
-
-## 📊 Dashboard Preview
-<img width="647" height="359" alt="image" src="https://github.com/user-attachments/assets/24891ccb-eb59-4b89-a732-b421102ea56b" />
-<img width="614" height="368" alt="image" src="https://github.com/user-attachments/assets/656634e5-2abc-42f2-8428-3bbfd15e2eb1" />
-<img width="652" height="365" alt="image" src="https://github.com/user-attachments/assets/b5581a5d-a130-48ec-a837-80cba92a3e05" />
-
-
-
-## 💡 Key Findings
-
-<!-- TODO: replace each [X] with real numbers from your queries/dashboard. Delete any finding you can't back with data. -->
-
-1. **Infection rate:** [Country A], [Country B] and [Country C] had the highest share of population infected, at [X]%, [X]% and [X]%.
-2. **Death rate:** The global death rate peaked at around [X]% in [month/year], then fell to [X]% by the end of the dataset.
-3. **Vaccination:** By [date], [X]% of the population in [country/region] had received at least one dose, compared with [X]% in [country/region].
-4. **Insight of your own:** [e.g. a comparison between continents, or the gap between case numbers and death rate in a specific country.]
 
 ## ▶️ How to Reproduce
 
@@ -95,9 +119,12 @@ COVID-19-Data-Exploration-SQL
 
 ## ⚠️ Limitations
 
-- The dataset covers **January 2020 – 2021**, so it does not reflect later variants or vaccination campaigns.
-- Reported cases depend on each country's testing capacity, so death and infection rates are likely underestimated in some countries.
+- The data ends on **30 Apr 2021**, so it does not cover later waves, variants or vaccination campaigns. The April 2021 peak in daily cases sits at the edge of the dataset.
+- Reported cases depend on each country's testing capacity and reporting rules, so CFR and infection rates are not directly comparable across countries.
+- Dips in the daily series reflect reporting adjustments (negative daily values are kept, not removed).
+- **Turkey, 10 Dec 2020:** cumulative cases jump by 823,225 because of a change in reporting, and daily new cases show 0 on that day.
 - Filling missing daily values with `0` is a simplifying assumption.
+- The relationships shown are descriptive and do not establish cause and effect.
 
 ## 🔗 Data Source
 
@@ -105,6 +132,4 @@ COVID-19-Data-Exploration-SQL
 
 ## 👤 Author
 
-**Nguyễn Văn Thương**: Data Science student, looking for a data-related internship.
-GitHub: [@NguyenVanThuong2112](https://github.com/NguyenVanThuong2112)
-<!-- TODO: add your email or LinkedIn here. -->
+**Nguyễn Văn Thương** · [@NguyenVanThuong2112](https://github.com/NguyenVanThuong2112)
