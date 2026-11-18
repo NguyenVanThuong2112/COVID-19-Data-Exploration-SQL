@@ -15,22 +15,25 @@ The dashboard has four pages. All pages can be filtered by date range, country a
 ### 1. Global Analysis
 Headline KPIs, cumulative cases and deaths, a world map, and the top 10 countries.
 
-![Global Analysis](PowerBI_Dashboard/screenshots/01_global_analysis.png)
+<img width="647" height="360" alt="Screenshot 2026-11-18 180806" src="https://github.com/user-attachments/assets/ff82fe73-159e-4597-ab8e-371682ae21cc" />
+
 
 ### 2. Trend Analysis
 Peak days, daily new cases and deaths with a 7-day average, and monthly cases vs. deaths.
 
-![Trend Analysis](PowerBI_Dashboard/screenshots/02_trend_analysis.png)
+<img width="632" height="358" alt="Screenshot 2026-11-18 180814" src="https://github.com/user-attachments/assets/ff89debf-66f3-4147-8660-c48e4960f581" />
 
 ### 3. Country Comparison
 Absolute vs. population-adjusted rankings, population density vs. cases per million, and a comparison table.
 
-![Country Comparison](PowerBI_Dashboard/screenshots/03_country_comparison.png)
+<img width="644" height="359" alt="Screenshot 2026-11-18 180821" src="https://github.com/user-attachments/assets/1e6e19b0-b095-4499-a2bf-e633c0d49f92" />
+
 
 ### 4. Testing & Vaccination
 Vaccine doses, people vaccinated, tests per 1,000 people, positive rates, and vaccination coverage vs. deaths per million.
 
-![Testing & Vaccination](PowerBI_Dashboard/screenshots/04_testing_vaccination.png)
+<img width="650" height="357" alt="Screenshot 2026-11-18 180843" src="https://github.com/user-attachments/assets/34748c16-1c48-499f-804c-0371da60bc95" />
+
 
 ## 💡 Key Findings
 
